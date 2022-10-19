@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sln"
+description = 'Scopes List Notation (SLN) Parser'
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+keywords = [
+    'scopes',
+    'parsing',
+    'sln',
+    'scopes-list-notation'
+]
+authors = [
+  { name = "Samuel Lotz", email = "salotz@salotz.info" },
+  { name = "Leonard Ritter" },
+]
+classifiers = [
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+dynamic = ["version"]
+
+[project.urls]
+Documentation = "https://github.com/salotz/python-sln"
+Issues = "https://github.com/salotz/python-sln/issues"
+Source = "https://github.com/salotz/python-sln"
+
+[tool.hatch.version]
+path = "src/sln/__about__.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "*~",
+]
+
+[tool.hatch.envs.default]
+dependencies = [
+  "pytest",
+  "pytest-cov",
+  "ipython",
+]
+
+python = "3.9"
+
+[tool.hatch.envs.default.scripts]
+cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/sln --cov=tests {args}"
+no-cov = "cov --no-cov {args}"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["37", "38", "39", "310", "311"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+omit = [
+  "src/sln/__about__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
