@@ -616,3 +616,27 @@ class Parser:
                 lineno = self.next_lineno
                 self.read_token()
         return tag(anchor, builder.get_result())
+
+    @staticmethod
+    def parsed_to_string(parse_result):
+
+        def _parsed_to_string_rec(target):
+
+            if issubclass(type(target), tuple):
+
+                sub_accum = []
+                for element in target:
+
+                    transformed_target = _parsed_to_string_rec(element)
+                    sub_accum.append(transformed_target)
+
+                return sub_accum
+
+            elif issubclass(type(target), Symbol):
+
+                return str(target)
+
+        return _parsed_to_string_rec(parse_result)
+
+    def parse_to_string(self):
+        return self.parsed_to_string(self.parse())
