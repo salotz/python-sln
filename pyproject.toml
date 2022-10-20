@@ -18,6 +18,9 @@ authors = [
   { name = "Samuel Lotz", email = "salotz@salotz.info" },
   { name = "Leonard Ritter" },
 ]
+maintainers = [
+  { name = "Samuel Lotz", email = "salotz@salotz.info" },
+]
 classifiers = [
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.7",
