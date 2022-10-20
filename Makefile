@@ -7,7 +7,7 @@ build:
 .PHONY: build
 
 publish:
-	hatch publish
+	HATCH_INDEX_USER='salotz' hatch -v publish
 .PHONY: publish
 
 
