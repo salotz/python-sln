@@ -1,5 +1,7 @@
 """Core Lexer, Parser, and data structures."""
 
+from numbers import Number
+
 def memoize(f):
     memo = {}
     def helper(*args):
@@ -622,6 +624,7 @@ class Parser:
 
         def _parsed_to_string_rec(target):
 
+            # recurse if it is a tuple/list
             if issubclass(type(target), tuple):
 
                 sub_accum = []
@@ -632,9 +635,21 @@ class Parser:
 
                 return sub_accum
 
+            # handle if it is a symbol and just convert to string
             elif issubclass(type(target), Symbol):
 
                 return str(target)
+
+            # otherwise it is a basic type
+            elif (
+                    isinstance(target, str) or
+                    isinstance(target, Number)
+            ):
+
+                return target
+
+            else:
+                raise SLNError("Unknown type in tree encountered")
 
         return _parsed_to_string_rec(parse_result)
 

@@ -1,3 +1,7 @@
+test:
+	hatch run -- pytest tests
+.PHONY: test
+
 bumpversion:
 	hatch version minor
 .PHONY: bumpversion
