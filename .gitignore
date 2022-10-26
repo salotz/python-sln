@@ -1,6 +1,8 @@
 .spack-env
 spack.lock
 
+.pytest_cache
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
