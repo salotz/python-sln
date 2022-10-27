@@ -454,7 +454,7 @@ def trace(anchor):
 
 
 def error(msg, *args):
-    raise EOError(msg.format(*args))
+    raise SLNError(msg.format(*args))
 
 def tag(anchor, obj):
     return obj
