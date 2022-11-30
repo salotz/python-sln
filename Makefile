@@ -6,6 +6,11 @@ bumpversion:
 	hatch version minor
 .PHONY: bumpversion
 
+env:
+	hatch env remove
+	hatch env create
+.PHONY: env
+
 build:
 	hatch build
 .PHONY: build
